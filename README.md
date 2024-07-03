@@ -17,9 +17,9 @@
 このプロジェクトをローカル環境にインストールするには、以下の手順に従ってください。
 
 ## 環境変数を設定する
-# PYTHONSCR_KEYFILE_PATH=credentials/pythonscr-380420-036213d91a2c.json
-# GAS_WEB_APP_URL_FILE=credentials/gas_web_app_url.json
-# LOGIN_INFO_FILE=credentials/login_info.json
+PYTHONSCR_KEYFILE_PATH=credentials/pythonscr-380420-036213d91a2c.json
+GAS_WEB_APP_URL_FILE=credentials/gas_web_app_url.json
+LOGIN_INFO_FILE=credentials/login_info.json
 
 
 

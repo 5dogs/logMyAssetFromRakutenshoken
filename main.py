@@ -150,25 +150,13 @@ if __name__ == "__main__":
             config = json.load(file)
             
         spreadsheet_id = config['spreadsheet_id']
-
             
-            
-
         upload_to_google_sheets(latest_file, spreadsheet_id)
         wait_for_download(download_folder)
         print("ファイルのアップロードが完了しました。")
 
-        # Google Apps ScriptのWebアプリURLを指定してmain関数を呼び出す
-        # gas_web_app_url = "https://script.google.com/macros/s/AKfycbyJFOsAK6MUzoZnNx8JiA1vTjUyj8iXK8vbUTXBBn0B0Tw1V-cVu2j2r9GoCDj9XF3gwg/exec"
-        # trigger_gas_script(gas_web_app_url)
-
-        
-        # JSONファイルを読み込む
-
-        # URLを取得する
         gas_web_app_url = config['gas_web_app_url']
 
-        # 既存の関数を呼び出す
         trigger_gas_script(gas_web_app_url)
 
     except Exception as e:

@@ -145,7 +145,6 @@ if __name__ == "__main__":
         latest_file = get_latest_file(download_folder)
         print("最新のファイル:", latest_file)
 
-        # spreadsheet_id = "14mfuqIFzjls0Zyz4Q20Istzhx3VcSFE2qrQjXPkYLws"
         with open('credentials/gas_web_app_url.json', 'r') as file:
             config = json.load(file)
             

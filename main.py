@@ -30,6 +30,7 @@ def download_asset_file():
     password_field.clear()
     username_field.send_keys(username)
     password_field.send_keys(password)
+    wait = WebDriverWait(driver, 2000)
 
     login_button = wait.until(EC.presence_of_element_located((By.ID, "login-btn")))
     login_button.click()

@@ -23,7 +23,7 @@ def download_asset_file():
     password = login_info[site_name]["pass"]
 
     driver.get(url_login)
-    wait = WebDriverWait(driver, 500)
+    wait = WebDriverWait(driver, 2000)
     username_field = wait.until(EC.presence_of_element_located((By.ID, "form-login-id")))
     password_field = wait.until(EC.presence_of_element_located((By.ID, "form-login-pass")))
     username_field.clear()

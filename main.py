@@ -37,7 +37,7 @@ def download_asset_file():
 
     # ログイン後のページがロードされるまで待機
     try:
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, '.pcmm-btlk-link span.pcmm-btlk__text')))
+        WebDriverWait(driver, 1000).until(EC.presence_of_element_located((By.CSS_SELECTOR, '.pcmm-btlk-link span.pcmm-btlk__text')))
         print("ログイン後のページがロードされました。")
     except:
         print("ログイン後のページのロードに失敗しました。")

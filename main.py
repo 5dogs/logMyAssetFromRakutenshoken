@@ -15,6 +15,9 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 def download_asset_file():
     options = webdriver.ChromeOptions()
+    options.add_argument('--headless')  # ヘッドレスモードを有効化
+    options.add_argument('--disable-gpu')  # GPUを無効化（Linuxなどで必要になる場合あり）
+    options.add_argument('--window-size=1920,1080')  # ウィンドウサイズを設定
     driver = webdriver.Chrome(options=options)
     login_info = json.load(open("credentials/login_info.json", "r", encoding="utf-8"))
     site_name = "sec_rakuten"
@@ -138,6 +141,26 @@ def trigger_gas_script(web_app_url):
         print(f"Google Apps Scriptの実行に失敗しました。ステータスコード: {response.status_code}")
 
 
+CREDENTIALS_FILE = "credentials/LINE_token.json"
+LINE_CREDENTIAL_KEY = "LINE_credential"
+LINE_NOTIFY_API_URL = "https://notify-api.line.me/api/notify"
+
+def load_line_token(credentials_file, credential_key):
+    with open(credentials_file, "r", encoding="utf-8") as file:
+        login_info = json.load(file)
+    return login_info[credential_key]["token"]
+
+LINE_NOTIFY_TOKEN = load_line_token(CREDENTIALS_FILE, LINE_CREDENTIAL_KEY)
+
+def send_line_notify(message):
+    headers = {"Authorization": f"Bearer {LINE_NOTIFY_TOKEN}"}
+    payload = {"message": message}
+    try:
+        response = requests.post(LINE_NOTIFY_API_URL, headers=headers, data=payload)
+        response.raise_for_status()
+        print("LINE通知送信成功")
+    except requests.exceptions.RequestException as e:
+        print(f"LINE通知送信失敗: {e}")
 if __name__ == "__main__":
     try:
         download_asset_file()
@@ -158,8 +181,10 @@ if __name__ == "__main__":
         gas_web_app_url = config['gas_web_app_url']
 
         trigger_gas_script(gas_web_app_url)
+        send_line_notify("今日の資産情報をスプシに反映しました")
 
     except Exception as e:
         import traceback
         print(f"エラーが発生しました: {e}")
+        send_line_notify("資産情報処理にエラーが起きました")
         traceback.print_exc()

@@ -181,7 +181,7 @@ if __name__ == "__main__":
 
         gas_web_app_url = config['gas_web_app_url']
         trigger_gas_script(gas_web_app_url)
-        send_line_notify("今日の資産情報をスプシに反映しました")
+        send_line_notify("已更新资产信息！")
 
     except Exception as e:
         import traceback

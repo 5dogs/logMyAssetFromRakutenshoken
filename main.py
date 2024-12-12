@@ -177,9 +177,9 @@ if __name__ == "__main__":
         upload_to_google_sheets(latest_file, spreadsheet_id)
         wait_for_download(download_folder)
         print("ファイルのアップロードが完了しました。")
+        print("資産情報をスプシ蓄積してます...")
 
         gas_web_app_url = config['gas_web_app_url']
-
         trigger_gas_script(gas_web_app_url)
         send_line_notify("今日の資産情報をスプシに反映しました")
 
